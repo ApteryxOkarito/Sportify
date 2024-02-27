@@ -38,7 +38,7 @@ GET    | /class/:sportId          | NO    | user | Get all classes filtered by s
 GET    | /class/:userId           | YES   | user | Get all classes the user booked        |  `params: userId, classId`       | { message: 'List of booked classes', data: [`class`]}
 POST   | /class/bookClass         | YES   | user | Book a class                           |   `params: userId, classId`      | { message: 'Class booked successfully', data: [`class`]}
 POST   | /class/             | YES   | admin | Create a class          |   `params: sportId` , `Start`, `Finish`,`Duration`,`Days`    | { message: 'Class created successfully', data: [`class`]}
-PATCH  | /class/:classlId         | YES   | admin| Update class information              | `params: classId`,`sportId` , `Start`, `Finish`,`Duration`,`Days` | { message: 'Class updated successfully', data: [`class`]}
+PATCH  | /class/:classId         | YES   | admin| Update class information              | `params: classId`,`sportId` , `Start`, `Finish`,`Duration`,`Days` | { message: 'Class updated successfully', data: [`class`]}
 DELETE | /class/:classId   | YES   | admin | Delete a class          |   `params: classId`                               | { message: 'Class deleted successfully', data: `class`}
 DELETE | /class/:classId/:userId        | YES   | user | cancel a booked class                   |   `params: userId, classId`      | { message: 'Class canceled successfully', data: [`class`]}
 
