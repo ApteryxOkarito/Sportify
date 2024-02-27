@@ -1,4 +1,5 @@
-const { checkDB, syncModels } = require("./db/index.js");
+const { checkDB, syncModels } = require("./db/index.js")
+const { addRelations } = require('./db/relations.js')
 const User = require('./api/models/user.model.js')
 const Suscription = require('./api/models/suscription.model.js')
 const Class = require('./api/models/class.model.js')
@@ -10,6 +11,7 @@ const Material = require('./api/models/material.model.js')
 async function dbConnect() {
 try {
     await checkDB()
+    addRelations()
     await syncModels()
 } catch (error) {
     console.log('Something has gone very wrong 😱')
