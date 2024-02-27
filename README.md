@@ -48,9 +48,9 @@ DELETE | /class/:classId/:userId        | YES   | user | cancel a booked class  
 METHOD | ENDPOINT                | TOKEN | ROLE | DESCRIPTION              | POST PARAMS                                     | RETURNS
 -------|-------------------------|-------|------|--------------------------|-------------------------------------------------|--------------------
 GET    | /sports                   | NO   | user | Get all sports          |                                  | { message: 'List of all sports availables', data: [`sports`]}
-POST   | /sports/:sportId    | YES   | admin | Create a sport Suscription          |   `params: sportId`                         | { message: 'Sport created successfully', data: [`suscription`]}
-PATCH    | /sports/:sportId    | YES   | admin | Edit a sport          |    `params: sportId` `                            | { message: 'Sport updated successfully', data: `suscription`}
-DELETE | /sports/:sportId    | YES   | admin | Delete Sport          |    `params: sportId` `                               | { message: 'Sport deleted successfully', data: `suscription`}
+POST   | /sports/:sportId    | YES   | admin | Create a sport Suscription          |   `params: sportId`                         | { message: 'Sport created successfully', data: [`sports`]}
+PATCH    | /sports/:sportId    | YES   | admin | Edit a sport          |    `params: sportId`                             | { message: 'Sport updated successfully', data: `sports`}
+DELETE | /sports/:sportId    | YES   | admin | Delete Sport          |    `params: sportId`                               | { message: 'Sport deleted successfully', data: `sports`}
 
 
 ### Room Endpoints
