@@ -5,7 +5,10 @@ const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, proces
 host: process.env.DB_HOST,
 dialect: process.env.DB_DIALECT,
 port: process.env.DB_PORT,
-logging: false
+logging: false,
+define: {
+    timestamps: false
+}
 });
 
 async function checkDB(){
@@ -17,9 +20,19 @@ async function checkDB(){
     }
 }
 
+async function syncModels(){
+    try {
+        await sequelize.sync({force : true})
+        console.log('Models synchronized 🌚')
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 
 
 module.exports = {
     sequelize,
-    checkDB
+    checkDB,
+    syncModels
 }
