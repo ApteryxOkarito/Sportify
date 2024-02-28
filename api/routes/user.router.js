@@ -14,7 +14,7 @@ const {
   
 router
 
-    .get('/', checkAuth, checkAdmin, getAllUsers)
+/*     .get('/', checkAuth, checkAdmin, getAllUsers)
     .get('/:id', getOneUser, checkAuth, checkAdmin)
     .get('/profile', checkAuth, getProfile)
     .post('/', checkAuth, checkAdmin, createUser)
@@ -22,7 +22,7 @@ router
     .patch('/profile', checkAuth, updateOwnProfile)
     .patch('/profile', checkAuth, checkAdmin, updateProfile)
     .destroy('/id', checkAuth, checkAdmin, deleteProfile)
-    .destroy('/profile', checkAuth, deleteOwnProfile )
+    .destroy('/profile', checkAuth, deleteOwnProfile ) */
 
 
 module.exports = router
