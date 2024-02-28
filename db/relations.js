@@ -9,17 +9,34 @@ const User = require('../api/models/user.model.js')
 function addRelations(){
     try {
         // ONE TO ONE - User & Suscription
-        User.hasOne(Suscription)
-        Suscription.belongsTo(User)
+        User.hasOne(Suscription, {
+            onDelete: 'CASCADE'
+        }) 
+        Suscription.belongsTo(User,{
+            onDelete: 'CASCADE'
+                })
+        
         // ONE TO ONE -  Room & Sport
-        Sport.hasOne(Room)
-        Room.belongsTo(Sport)
+        Sport.hasOne(Room, {
+            onDelete: 'SET NULL'
+        })
+        Room.belongsTo(Sport, {
+            onDelete: 'SET NULL'
+        })
         // ONE TO MANY - Class & Sport
-        Sport.hasMany(Class)
-        Class.belongsTo(Sport)
+        Sport.hasMany(Class,  {
+            onDelete: 'CASCADE'
+        })
+        Class.belongsTo(Sport, {
+            onDelete: 'CASCADE'
+        })
         // ONE TO MANY - Room & Material
-        Room.hasMany(Material)
-        Material.belongsTo(Room)
+        Room.hasMany(Material, {
+            onDelete: 'SET NULL'
+        })
+        Material.belongsTo(Room, {
+            onDelete: 'SET NULL'
+        })
         // MANY TO MANY - User & Sport
         User.belongsToMany(Sport, {through: 'userSports', as: 'userSport'})
         Sport.belongsToMany(User, {through: 'userSports', as: 'userSport'})

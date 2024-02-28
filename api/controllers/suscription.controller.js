@@ -1,0 +1,1 @@
+const Suscription = require('../models/suscription.model')

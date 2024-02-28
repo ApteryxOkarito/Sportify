@@ -1,0 +1,1 @@
+const Sport = require('../models/sport.model')
