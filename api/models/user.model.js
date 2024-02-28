@@ -3,12 +3,12 @@ const { sequelize } = require('../../db/index.js');
 
 const User = sequelize.define('user', {
     fullName:{
-        type: DataTypes.STRING(70),
+        type: DataTypes.STRING,
         allowNull: false
 
     },
     email: {
-        type: DataTypes.STRING(80),
+        type: DataTypes.STRING,
         allowNull: false,
         unique: true,
         validate: {
@@ -23,7 +23,7 @@ const User = sequelize.define('user', {
     //     password: true}
 
     },
-    
+
     dni: {
         type: DataTypes.STRING,
         allowNull: false,
