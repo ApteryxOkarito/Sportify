@@ -72,7 +72,7 @@ const cancelClass = async (req,res) => {
     }
 }
 
-modules.exports ={
+module.exports ={
     getAllClasses,
     classBySport, 
     userClasses, 
