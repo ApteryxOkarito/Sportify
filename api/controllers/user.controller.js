@@ -27,11 +27,6 @@ const getProfile = async (req,res) => {
 
 const getOneUser = async (req,res) => {
     try {
-        console.log('UserId:', req.query.id)
-        console.log('Request Query:', req.query);
-        console.log('Request Query:', req.query.userId);
-        const user = await User.findByPk(req.query.id)
-        res.status(200).json(user)
 
     } catch (error) {
         console.log(error)
@@ -61,6 +56,13 @@ const createUser = async (req, res) => {
 
 
 const resetPassword = async (req,res) => {
+    try {
+
+    } catch (error) {
+        console.log(error)
+    }
+}
+const updateOwnProfile = async (req,res) => {
     try {
 
     } catch (error) {
@@ -98,6 +100,7 @@ module.exports = {
     createUser,
     resetPassword,
     updateProfile,
+    updateOwnProfile,
     deleteProfile,
     deleteOwnProfile
 }

@@ -17,10 +17,10 @@ const signup = async (req, res) => {
         dni: req.body.dni,
         phone: req.body.phone,
     })
-    
+
     const payload = { email: req.body.email }
     const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' })
-    return res.status(200).json({ data: token })  // === { token: token }
+    return res.status(200).json({ token: token })
   } catch (error) {
     console.log('Error signing up user')
     return res.status(500).json(error)
