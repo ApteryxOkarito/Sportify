@@ -8,13 +8,14 @@ const {
     resetPassword,
     updateProfile,
     updateOwnProfile,
-    deleteProfile,
+    deleteUser,
     deleteOwnProfile
     } = require('../controllers/user.controller')
   
 router
     .get('/', getAllUsers)
     .get('/:id', getOneUser)
+    .delete('/:id', deleteUser)
     // .get('/users', checkAuth, checkAdmin, getAllUsers)
     // .get('/users', checkAuth, checkAdmin, getOneUser)
     // .get('/profile', checkAuth, getProfile)
@@ -22,7 +23,7 @@ router
     // .patch('/password', checkAuth, resetPassword)
     // .patch('/profile', checkAuth, updateOwnProfile)
     // .patch('/profile', checkAuth, checkAdmin, updateProfile)
-    // .destroy('/id', checkAuth, checkAdmin, deleteProfile)
-    // .destroy('/profile', checkAuth, deleteOwnProfile ) 
+    // .delete('/id', checkAuth, checkAdmin, deleteProfile)
+    // .delete('/profile', checkAuth, deleteOwnProfile ) 
 
 module.exports = router

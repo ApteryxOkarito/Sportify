@@ -69,6 +69,8 @@ const resetPassword = async (req,res) => {
         console.log(error)
     }
 }
+
+
 const updateOwnProfile = async (req,res) => {
     try {
 
@@ -85,13 +87,25 @@ const updateProfile = async (req,res) => {
     }
 }
 
-const deleteProfile = async (req,res) => {
+const deleteUser = async (req,res) => {
     try {
-
+        const user = await User.destroy({
+            where: {
+                id: req.params.id
+            }
+        })
+        if (user > 0){
+            return res.status(200).json('User deleted')
+		} else {
+			return res.status(404).send('User not found')
+        }
     } catch (error) {
         console.log(error)
     }
 }
+
+
+
 const deleteOwnProfile = async (req,res) => {
     try {
 
@@ -108,6 +122,6 @@ module.exports = {
     resetPassword,
     updateProfile,
     updateOwnProfile,
-    deleteProfile,
+    deleteUser,
     deleteOwnProfile
 }
