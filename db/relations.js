@@ -21,8 +21,9 @@ function addRelations(){
         Room.hasMany(Material)
         Material.belongsTo(Room)
         // MANY TO MANY - User & Sport
-        User.belongsToMany({Sport, through: 'funkas', as: 'funka'})
-        Sport.belongsToMany({User, through: 'funkas', as: 'funka'})
+        User.belongsToMany(Sport, {through: 'userSports', as: 'userSport'})
+        Sport.belongsToMany(User, {through: 'userSports', as: 'userSport'})
+
     } catch (error) {
         console.log ('Something has gone very wrong with the relations!! 😱')
         
