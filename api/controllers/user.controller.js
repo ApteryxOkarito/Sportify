@@ -12,16 +12,26 @@ const getAllUsers = async (req, res) => {
 
 
 
-const getProfile = () => {
+const getProfile = async (req,res) => {
     try {
+        console.log('UserId:', req.query)
+        console.log('Request Query:', req.query);
+        const user = await User.findByPk(req.query)
+        res.status(200).json(user)
 
     } catch (error) {
         console.log(error)
+        
     }
 }
 
-const getOneUser = () => {
+const getOneUser = async (req,res) => {
     try {
+        console.log('UserId:', req.query.id)
+        console.log('Request Query:', req.query);
+        console.log('Request Query:', req.query.userId);
+        const user = await User.findByPk(req.query.id)
+        res.status(200).json(user)
 
     } catch (error) {
         console.log(error)
@@ -50,7 +60,7 @@ const createUser = async (req, res) => {
 }
 
 
-const resetPassword = () => {
+const resetPassword = async (req,res) => {
     try {
 
     } catch (error) {
@@ -58,7 +68,7 @@ const resetPassword = () => {
     }
 }
 
-const updateProfile = () => {
+const updateProfile = async (req,res) => {
     try {
 
     } catch (error) {
@@ -66,14 +76,14 @@ const updateProfile = () => {
     }
 }
 
-const deleteProfile = () => {
+const deleteProfile = async (req,res) => {
     try {
 
     } catch (error) {
         console.log(error)
     }
 }
-const deleteOwnProfile = () => {
+const deleteOwnProfile = async (req,res) => {
     try {
 
     } catch (error) {
