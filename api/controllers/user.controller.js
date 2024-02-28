@@ -11,7 +11,6 @@ const getAllUsers = async (req, res) => {
 }
 
 
-
 const getProfile = async (req,res) => {
     try {
         console.log('UserId:', req.query)
@@ -25,8 +24,16 @@ const getProfile = async (req,res) => {
     }
 }
 
+//No funciona
 const getOneUser = async (req,res) => {
     try {
+        console.log(req.params.id)
+        const user = await User.findByPk(req.params.id)
+        if(user){
+            return res.status(200).json(user)
+        } else {
+            return res.status(404).send('User not found')
+        }
 
     } catch (error) {
         console.log(error)
