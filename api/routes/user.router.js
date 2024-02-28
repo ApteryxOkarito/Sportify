@@ -14,8 +14,8 @@ const {
   
 router
     .get('/', getAllUsers)
-    .get('/:id', getOneUser)
-    .delete('/:id', deleteUser)
+    .get('/:userId', getOneUser)
+    .delete('/:userId', deleteUser)
     // .get('/users', checkAuth, checkAdmin, getAllUsers)
     // .get('/users', checkAuth, checkAdmin, getOneUser)
     // .get('/profile', checkAuth, getProfile)
@@ -23,7 +23,7 @@ router
     // .patch('/password', checkAuth, resetPassword)
     // .patch('/profile', checkAuth, updateOwnProfile)
     // .patch('/profile', checkAuth, checkAdmin, updateProfile)
-    // .delete('/id', checkAuth, checkAdmin, deleteProfile)
+    // .delete('/userId', checkAuth, checkAdmin, deleteProfile)
     // .delete('/profile', checkAuth, deleteOwnProfile ) 
 
 module.exports = router
