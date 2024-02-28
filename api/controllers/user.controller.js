@@ -5,7 +5,6 @@ const getAllUsers = async (req, res) =>   {
     try {
         const users = await User.findAll()
         return res.status(200).json(users)
-        
       } catch (error) {
         console.log(error)
       }
@@ -35,17 +34,14 @@ const createUser = async (req,res) =>   {
         // const hashedPassword = bcrypt.hashSync(req.body.password, saltRounds)
         // req.body.password = hashedPassword
         
-        
-        const newUser = User.create({
+        const newUser = await User.create({
             fullName: req.body.fullName,
             email:req.body.email,
             password:req.body.password,
             dni:req.body.dni,
             phone:req.body.phone,
-            
-        }) //falta el role. Ver cómo se pone 
-        res.status(200).jason(newUser)
-
+        })
+        return res.status(200).json(newUser)
         
     } catch (error) {
         console.log(error)
