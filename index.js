@@ -3,6 +3,7 @@ const { addRelations } = require('./db/relations.js')
 const express = require('express')
 const cors = require('cors')
 const morgan = require('morgan')
+const router = require('./api/routes/index.js')
 
 async function dbConnect() {
 try {
@@ -21,6 +22,7 @@ app.use(express.json())
 app.use(morgan("dev)"))
 app.use(cors())
 
+
 app.listen(port, async () => {
     try {
         await dbConnect()
@@ -31,3 +33,5 @@ app.listen(port, async () => {
         
     }
 })
+
+app.use('/api', router)

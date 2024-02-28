@@ -12,7 +12,8 @@ const Room = sequelize.define('room', {
         allowNull: false
     },
     totalCapacity: {
-        type: DataTypes.INTEGER
+        type: DataTypes.INTEGER,
+        allowNull: false
     }
 });
 

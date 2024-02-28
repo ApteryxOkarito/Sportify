@@ -13,6 +13,7 @@ METHOD | ENDPOINT         | TOKEN | ROLE | DESCRIPTION              | POST PARAM
 GET    | /user            | YES   | admin | Get All Users           |                                                                             | { message: 'List of all users', data: [`user`]}
 GET    | /user/profile    | YES   | user | Get Own Profile          |                                                                             |  { message: 'User fetched successfully', data: [`user`]}
 GET    | /user/:userId    | YES   | admin | Get One User            | `params: userId`                                                            |  { message: 'User fetched successfully', data: [`user`]}
+POST    | /user    | NO   | user | Create User            | { message: 'User created successfully', data: [`user`]}
 PUT    | /user/password   | YES   | user | Reset password           | `newPassword` `repeatPassword`                                              | { message: 'Password reset successfully'}
 PATCH    | /user/profile    | YES   | user | Update own profile       | `fullName`, `email`, `dni` , `phone`                                        | { message: 'User created successfully', data: [`user`]}
 PATCH    | /user/:userId    | YES   | admin| Update one user          | `params: fullName`, `email`, `password`, `dni` , `phone`                    | { message: 'User updated successfully', data: [`user`]}
