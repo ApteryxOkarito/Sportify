@@ -3,7 +3,11 @@ const bcrypt = require('bcrypt')
 
 const getAllUsers = async (req, res) => {
     try {
-        const users = await User.findAll()
+        const users = await User.findAll( {
+            attributes: {
+                exclude: 'password'
+            }
+        })
         return res.status(200).json(users)
     } catch (error) {
         console.log(error)
@@ -133,7 +137,16 @@ const deleteUser = async (req,res) => {
 
 const deleteOwnProfile = async (req,res) => {
     try {
-
+        const user = await User.destroy({
+            where: {
+                id: res.locals.user.id
+            }
+        })
+        if (user > 0){
+            return res.status(200).json('User deleted')
+		} else {
+			return res.status(404).send('User not found')
+        }
     } catch (error) {
         console.log(error)
     }

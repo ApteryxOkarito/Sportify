@@ -13,17 +13,15 @@ const {
     } = require('../controllers/user.controller')
   
 router
-    .get('/', getAllUsers)
+    .get('/', checkAuth, checkAdmin, getAllUsers)
     .get('/profile', checkAuth, getOwnUser)
-    .get('/:userId', getOneUser)
-    .delete('/:userId', deleteUser)
+    .get('/:userId', checkAuth, checkAdmin, getOneUser)
     .post('/', checkAuth, checkAdmin, createUser)
     .patch('/profile', checkAuth, updateOwnProfile)
     .patch('/:userId', checkAuth, checkAdmin, updateUser)
+    .delete('/profile', checkAuth, deleteOwnProfile ) 
+    .delete('/:userId',checkAuth,checkAdmin, deleteUser)
+
 
     // .patch('/password', checkAuth, resetPassword)
-    // .patch('/profile', checkAuth, updateOwnProfile)
-    // .delete('/userId', checkAuth, checkAdmin, deleteProfile)
-    // .delete('/profile', checkAuth, deleteOwnProfile ) 
-
 module.exports = router
