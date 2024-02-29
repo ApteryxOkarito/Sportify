@@ -3,7 +3,7 @@ const {checkAuth, checkAdmin} = require('../middleware/index')
 const {
     getAllUsers,
     getOneUser,
-    getProfile,
+    getOwnUser,
     createUser,
     resetPassword,
     updateProfile,
@@ -14,11 +14,12 @@ const {
   
 router
     .get('/', getAllUsers)
+    .get('/profile', checkAuth, getOwnUser)
     .get('/:userId', getOneUser)
     .delete('/:userId', deleteUser)
     // .get('/users', checkAuth, checkAdmin, getAllUsers)
     // .get('/users', checkAuth, checkAdmin, getOneUser)
-    // .get('/profile', checkAuth, getProfile)
+
     // .post('/', checkAuth, checkAdmin, createUser)
     // .patch('/password', checkAuth, resetPassword)
     // .patch('/profile', checkAuth, updateOwnProfile)

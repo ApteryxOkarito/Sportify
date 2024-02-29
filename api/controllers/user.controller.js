@@ -10,16 +10,22 @@ const getAllUsers = async (req, res) => {
     }
 }
 
-const getProfile = async (req,res) => {
+
+const getOwnUser = async (req,res) => {
     try {
-        console.log('UserId:', req.query)
-        console.log('Request Query:', req.query);
-        const user = await User.findByPk(req.query)
-        res.status(200).json(user)
+        const user = await User.findByPk(res.locals.user.id, {
+            attributes: {
+                exclude: 'password'
+            }
+        })
+        if(user){
+            return res.status(200).json(user)
+        } else {
+            return res.status(404).send('User not found')
+        }
 
     } catch (error) {
         console.log(error)
-        
     }
 }
 
@@ -27,7 +33,7 @@ const getProfile = async (req,res) => {
 const getOneUser = async (req,res) => {
     try {
 
-        const user = await User.findByPk(req.params.id)
+        const user = await User.findByPk(req.params.userId)
         if(user){
             return res.status(200).json(user)
         } else {
@@ -116,7 +122,7 @@ const deleteOwnProfile = async (req,res) => {
 module.exports = {
     getAllUsers,
     getOneUser,
-    getProfile,
+    getOwnUser,
     createUser,
     resetPassword,
     updateProfile,
