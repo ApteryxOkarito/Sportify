@@ -18,11 +18,11 @@ router
     .get('/:userId', getOneUser)
     .delete('/:userId', deleteUser)
     .post('/', checkAuth, checkAdmin, createUser)
+    .patch('/profile', checkAuth, updateOwnProfile)
     .patch('/:userId', checkAuth, checkAdmin, updateUser)
 
     // .patch('/password', checkAuth, resetPassword)
     // .patch('/profile', checkAuth, updateOwnProfile)
-    // 
     // .delete('/userId', checkAuth, checkAdmin, deleteProfile)
     // .delete('/profile', checkAuth, deleteOwnProfile ) 
 

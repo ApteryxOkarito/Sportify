@@ -78,9 +78,10 @@ const resetPassword = async (req,res) => {
 
 const updateOwnProfile = async (req,res) => {
         try {
+
             const user = await User.update(req.body, {
                 where:{
-                    id: params.userId
+                    id: res.locals.user.id
                 }
             })
             if (!user) {
