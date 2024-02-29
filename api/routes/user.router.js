@@ -6,7 +6,7 @@ const {
     getOwnUser,
     createUser,
     resetPassword,
-    updateProfile,
+    updateUser,
     updateOwnProfile,
     deleteUser,
     deleteOwnProfile
@@ -17,13 +17,12 @@ router
     .get('/profile', checkAuth, getOwnUser)
     .get('/:userId', getOneUser)
     .delete('/:userId', deleteUser)
-    // .get('/users', checkAuth, checkAdmin, getAllUsers)
-    // .get('/users', checkAuth, checkAdmin, getOneUser)
+    .post('/', checkAuth, checkAdmin, createUser)
+    .patch('/:userId', checkAuth, checkAdmin, updateUser)
 
-    // .post('/', checkAuth, checkAdmin, createUser)
     // .patch('/password', checkAuth, resetPassword)
     // .patch('/profile', checkAuth, updateOwnProfile)
-    // .patch('/profile', checkAuth, checkAdmin, updateProfile)
+    // 
     // .delete('/userId', checkAuth, checkAdmin, deleteProfile)
     // .delete('/profile', checkAuth, deleteOwnProfile ) 
 

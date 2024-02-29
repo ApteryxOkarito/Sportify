@@ -77,15 +77,34 @@ const resetPassword = async (req,res) => {
 
 
 const updateOwnProfile = async (req,res) => {
-    try {
-
-    } catch (error) {
-        console.log(error)
+        try {
+            const user = await User.update(req.body, {
+                where:{
+                    id: params.userId
+                }
+            })
+            if (!user) {
+                return res.status(404).send('User not found')
+            }
+            return res.status(200).json({message: 'User updated'})
+    
+        } catch (error) {
+            console.log(error)
+        }
     }
-}
 
-const updateProfile = async (req,res) => {
+
+const updateUser = async (req,res) => {
     try {
+        const user = await User.update(req.body, {
+            where:{
+                id: req.params.userId
+            }
+        })
+        if (!user) {
+            return res.status(404).send('User not found')
+        }
+        return res.status(200).json({message: 'User updated'})
 
     } catch (error) {
         console.log(error)
@@ -125,7 +144,7 @@ module.exports = {
     getOwnUser,
     createUser,
     resetPassword,
-    updateProfile,
+    updateUser,
     updateOwnProfile,
     deleteUser,
     deleteOwnProfile
