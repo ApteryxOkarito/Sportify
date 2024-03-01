@@ -8,11 +8,11 @@ const User = require('../api/models/user.model.js')
 
 function addRelations(){
     try {
-        // ONE TO ONE - User & Suscription
-        User.hasOne(Suscription, {
+        // ONE TO MANY - User & Suscription
+        Suscription.hasMany(User, {
             onDelete: 'CASCADE'
         }) 
-        Suscription.belongsTo(User,{
+        User.belongsTo(Suscription,{
             onDelete: 'CASCADE'
                 })
         

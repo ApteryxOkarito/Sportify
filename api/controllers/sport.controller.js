@@ -1,7 +1,5 @@
 const Sport = require('../models/sport.model')
 
-
-
 const getAllSports = async (req, res) => {
     try {
         const sports = await Sport.findAll()
