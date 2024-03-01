@@ -4,7 +4,8 @@ const Class = require('../models/class.model.js')
 
 const getAllClasses = async (req, res) => {
     try {
-        
+        const classes = await Class.findAll()
+        return res.status(200).json(classes)
     } catch (error) {
         console.log(error)
     }

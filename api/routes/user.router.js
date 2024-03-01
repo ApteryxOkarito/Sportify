@@ -23,5 +23,5 @@ router
     .delete('/:userId',checkAuth,checkAdmin, deleteUser)
 
 
-    // .patch('/password', checkAuth, resetPassword)
+    // .patch('/password', checkAuth, resetPassword) //ESTO ES ICEBOX
 module.exports = router
