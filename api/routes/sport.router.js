@@ -9,7 +9,7 @@ const {
 
 router
     .get('/', getAllSports)
-    .post('/:sportId', checkAuth, checkAdmin, createSport)
+    .post('/', checkAuth, checkAdmin, createSport)
     .patch('/:sportId',checkAuth, checkAdmin, updateSport)
     .delete('/:sportId', checkAuth, checkAdmin,deleteSport)
 
