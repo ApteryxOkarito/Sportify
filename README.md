@@ -58,11 +58,11 @@ DELETE | /sports/:sportId    | YES   | admin | Delete Sport          |    `param
 
 METHOD | ENDPOINT                | TOKEN | ROLE | DESCRIPTION              | POST PARAMS                                     | RETURNS
 -------|-------------------------|-------|------|--------------------------|-------------------------------------------------|--------------------
-GET    | /room                    | YES   | admin | Get all rooms          |                                  | { message: 'List of rooms', data: [`room`]}
-GET    | /room/:roomId          | YES   | admin | Get one room      |   `params: classId, sportId`     | { message: 'Room fetched successfully', data: [`room`]}
-POST   | /room/         | YES   | admin | create a room                           |   `params: userId, classId`      | { message: 'Room created successfully', data: [`room`]}
-PATCH    | /room/:roomId    | YES   | admin| Edit one room          | `params: fullName`, `email`, `password`, `dni` , `phone`                    | { message: 'Room updated successfully', data: [`room`]}
-DELETE | /room/:roomId        | YES   | admin | delete a room                   |   `params: userId, classId`      | { message: 'Room deleted successfully', data: [`room`]}
+GET    | /rooms                    | YES   | admin | Get all rooms          |                                  | { message: 'List of rooms', data: [`room`]}
+GET    | /rooms/:roomId          | YES   | admin | Get one room      |   `params: classId, sportId`     | { message: 'Room fetched successfully', data: [`room`]}
+POST   | /rooms/         | YES   | admin | create a room                           |   `params: userId, classId`      | { message: 'Room created successfully', data: [`room`]}
+PATCH    | /rooms/:roomId    | YES   | admin| Edit one room          | `params: fullName`, `email`, `password`, `dni` , `phone`                    | { message: 'Room updated successfully', data: [`room`]}
+DELETE | /rooms/:roomId        | YES   | admin | delete a room                   |   `params: userId, classId`      | { message: 'Room deleted successfully', data: [`room`]}
 
 ### materials Endpoints
 
