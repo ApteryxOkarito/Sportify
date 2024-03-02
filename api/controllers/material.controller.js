@@ -11,9 +11,22 @@ const getAllMaterials = async (req, res) => {
 }
 
 const getMaterialFromRoom = async (req, res) => {
+    const roomId = req.params.roomId
+    const room = await Room.findByPk(roomId)
+    if (!room) {
+        return res.status(404).json({ message: "Room doesn't exist" });
+    }
+
     try {
-        const sports = await Sport.findAll()
-        return res.status(200).json(sports)
+
+        const roomId = req.params.roomId
+        const materials = await Material.findAll({
+            where: {
+                roomId: roomId
+            }
+        })
+
+    return res.status(200).json({ message: `Here you have all the materials from the ${roomId.name} room`, materials })
     } catch (error) {
         console.log(error)
     }
@@ -37,7 +50,7 @@ const createMaterial = async (req,res) => {
     const roomId = req.params.roomId
     const room = await Room.findByPk(roomId)
     if (!room) {
-        return res.status(404).json({ message: "Room not found" });
+        return res.status(404).json({ message: "Room doesn't exist" });
     }
 
     const newMaterial = await Material.create({
