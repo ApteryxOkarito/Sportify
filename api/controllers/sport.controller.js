@@ -28,19 +28,22 @@ const createSport = async (req,res) => {
 const updateSport = async (req,res) => {
     try {
 
-        const sportId = req.params.id;
-        const updatedSport = {
-            name: req.body.name,
-            description: req.body.description,
-            instructorName: req.body.instructorName
-    }
-    return res.status(200).json({message: "sport updated", updatedSport})
-}
+        const updatedRows = await Sport.update(req.body,{
+            where:{
+                id: req.params.sportId
+            }
+        })
 
-    catch (error) {
-        console.log(error)
-    }
-}
+        if(updatedRows > 0) {
+            const updatedSport = await Sport.findByPk(req.params.sportId)
+            return res.status(200).json(updatedSport)
+          } else {
+            return res.status(404).send('Sport not found')
+          }
+        } catch (error) {
+          res.status(500).send(error.message)
+        }
+      }
 
 
 const deleteSport = async (req,res) => {
