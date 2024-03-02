@@ -3,8 +3,8 @@ const Room = require('../models/room.model.js')
 
 const getAllMaterials = async (req, res) => {
     try {
-        const sports = await Sport.findAll()
-        return res.status(200).json(sports)
+        const materials = await Material.findAll()
+        return res.status(200).json({ message: "Here you have all the materials", materials })
     } catch (error) {
         console.log(error)
     }
