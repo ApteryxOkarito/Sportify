@@ -56,22 +56,31 @@ const createRoom = async (req, res) => {
 //esta funciona sin pasarle el parámetro de SportId. Podemos dejarla así o podemos pponer una validación de que pueda editarlo siempre y cuando no exista (como arriba)
 //Pero cuando lo he intentado me lanza error. Lo dejo pendiente 
 
+
+
 const updateRoom = async (req,res) => {
     try {
-        
-        const roomId = req.params.roomId;
-        const updatedRoom = {
-            name: req.body.name,
-            floor: req.body.floor,
-            totalCapacity: req.body.totalCapacity,
-    }
-    return res.status(200).json({message: "Room updated", updatedRoom})
-}
 
-    catch (error) {
-        console.log(error)
-    }
-}
+        const updatedRows = await Room.update(req.body,{
+            where:{
+                id: req.params.roomId
+            }
+        })
+
+        if(updatedRows > 0) {
+            const updatedRoom = await Room.findByPk(req.params.roomId)
+            return res.status(200).json(updatedRoom)
+          } else {
+            return res.status(404).send('Room not found')
+          }
+        } catch (error) {
+          res.status(500).send(error.message)
+        }
+      }
+
+
+
+
 
 //Opción que probé, pero claro, me dice que ya existe y no me deja actualizar aunque no cambie ese ID y solo el nombre 
 
@@ -105,15 +114,15 @@ const updateRoom = async (req,res) => {
 
 const deleteRoom = async (req,res) => {
     try {
-        const sport = await Sport.destroy({
+        const room = await Room.destroy({
             where: {
-                id: req.params.sportId
+                id: req.params.roomId
             }
         })
-        if (sport > 0){
-            return res.status(200).json('Sport deleted')
+        if (room > 0){
+            return res.status(200).json('Room deleted')
 		} else {
-			return res.status(404).send('Sport not found')
+			return res.status(404).send('Room not found')
         }
     } catch (error) {
         console.log(error)
