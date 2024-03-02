@@ -1,4 +1,5 @@
 const Material = require('../models/material.model.js')
+const Room = require('../models/room.model.js')
 
 const getAllMaterials = async (req, res) => {
     try {
@@ -29,15 +30,23 @@ const getMaterialByName = async (req, res) => {
 }
 
 
-const addMaterialRoom= async (req,res) => {
-    try {
-        const newSport = await Sport.create({
-            name: req.body.name,
-            description: req.body.description,
-            instructorName: req.body.instructorName,
+const createMaterial = async (req,res) => {
 
+    try {
+
+    const roomId = req.params.roomId
+    const room = await Room.findByPk(roomId)
+    if (!room) {
+        return res.status(404).json({ message: "Room not found" });
+    }
+
+    const newMaterial = await Material.create({
+            name :  req.body.name, 
+            description: req.body.description,
+            roomId: req.body.roomId
         })
-        return res.status(200).json({message: "Here it is your new Sport" , newSport})
+        
+    return res.status(200).json({message: `You have added a ${newMaterial.name} to the ${room.name} room`})
 
     } catch (error) {
         console.log(error)
@@ -91,7 +100,7 @@ module.exports = {
     getAllMaterials,
     getMaterialFromRoom,
     getMaterialByName,
-    addMaterialRoom,
+    createMaterial,
     updateMaterial,
     deleteMaterial
 }

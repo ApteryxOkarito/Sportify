@@ -5,7 +5,7 @@ const {
     getAllMaterials,
     getMaterialFromRoom,
     getMaterialByName,
-    addMaterialRoom,
+    createMaterial,
     updateMaterial,
     deleteMaterial
 } = require('../controllers/material.controller')
@@ -16,7 +16,7 @@ router
     .get('/', checkAuth, checkAdmin, getAllMaterials)
     .get('/:roomId', checkAuth, checkAdmin, getMaterialFromRoom)
     .get('/:name', checkAuth, checkAdmin, getMaterialByName)
-    .post('/:roomId',checkAuth, checkAdmin, addMaterialRoom)
+    .post('/:roomId',checkAuth, checkAdmin, createMaterial)
     .patch('/:materialId',checkAuth, checkAdmin, updateMaterial)
     .delete('/:materialId', checkAuth, checkAdmin, deleteMaterial)
 
