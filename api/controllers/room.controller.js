@@ -14,11 +14,11 @@ const getAllRooms = async (req, res) => {
 const getOneRoom = async (req,res) => {
     try {
 
-        const user = await User.findByPk(req.params.userId)
-        if(user){
-            return res.status(200).json(user)
+        const room = await Room.findByPk(req.params.roomId)
+        if(room){
+            return res.status(200).json(room)
         } else {
-            return res.status(404).send('User not found')
+            return res.status(404).send('Room not found')
         }
 
     } catch (error) {
@@ -27,21 +27,32 @@ const getOneRoom = async (req,res) => {
 }
 
 
-
-const createRoom = async (req,res) => {
+const createRoom = async (req, res) => {
     try {
-        const newSport = await Sport.create({
+        const existingSport = await Room.findOne(
+
+            { where: 
+                { sportId: req.body.sportId } 
+            });
+
+        if (existingSport) {
+            return res.status(400).json({ message: "A room with that sportId already exists." });
+        }
+
+        const newRoom = await Room.create({
             name: req.body.name,
-            description: req.body.description,
-            instructorName: req.body.instructorName,
+            floor: req.body.floor,
+            totalCapacity: req.body.totalCapacity,
+            sportId: req.body.sportId
+        });
 
-        })
-        return res.status(200).json({message: "Here it is your new Sport" , newSport})
-
+        return res.status(200).json({ message: "Here is your new Room", newRoom });
     } catch (error) {
-        console.log(error)
+        console.log(error);
+        return res.status(500).json({ message: "Internal Server Error" });
     }
-}
+};
+
 
 
 const updateRoom = async (req,res) => {

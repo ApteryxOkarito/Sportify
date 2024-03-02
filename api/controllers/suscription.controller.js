@@ -15,7 +15,6 @@ const chooseSuscription = async (req, res) => {
     
     try {
         const user = res.locals.user
-        console.log(user)
         const suscription = await Suscription.findByPk(req.body.suscriptionId)
         const suscribed = await user.setSuscription(suscription)
 
