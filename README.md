@@ -10,24 +10,24 @@ POST   | /auth/login      | -     | user | User Login               | `email`, `
 
 METHOD | ENDPOINT         | TOKEN | ROLE | DESCRIPTION              | POST PARAMS                                                                 | RETURNS
 -------|------------------|-------|------|--------------------|-----------------------------------------------------------------------------------|--------------------
-GET    | /user            | YES   | admin | Get All Users           |                                                                             | { message: 'List of all users', data: [`user`]}
-GET    | /user/profile    | YES   | user | Get Own Profile          |                                                                             |  { message: 'User fetched successfully', data: [`user`]}
-GET    | /user/:userId    | YES   | admin | Get One User            | `params: userId`                                                            |  { message: 'User fetched successfully', data: [`user`]}
-POST    | /user    | NO   | user | Create User            | { message: 'User created successfully', data: [`user`]}
-PUT    | /user/password   | YES   | user | Reset password           | `newPassword` `repeatPassword`                                              | { message: 'Password reset successfully'}
-PATCH    | /user/profile    | YES   | user | Update own profile       | `fullName`, `email`, `dni` , `phone`                                        | { message: 'User created successfully', data: [`user`]}
-PATCH    | /user/:userId    | YES   | admin| Update one user          | `params: fullName`, `email`, `password`, `dni` , `phone`                    | { message: 'User updated successfully', data: [`user`]}
-DELETE | /user/:userId    | YES   | admin| Delete one user          | `params: userId`                                                            | { message: 'User deleted successfully', data: [`user`]}
-DELETE | /user/profile    | YES   | user | Delete own profile       | `params: userId`                                                            | { message: 'User deleted successfully', data: [`user`]}
+GET    | /users            | YES   | admin | Get All Users           |                                                                             | { message: 'List of all users', data: [`user`]}
+GET    | /users/profile    | YES   | user | Get Own Profile          |                                                                             |  { message: 'User fetched successfully', data: [`user`]}
+GET    | /users/:userId    | YES   | admin | Get One User            | `params: userId`                                                            |  { message: 'User fetched successfully', data: [`user`]}
+POST    | /users    | NO   | user | Create User            | { message: 'User created successfully', data: [`user`]}
+PUT    | /users/password   | YES   | user | Reset password           | `newPassword` `repeatPassword`                                              | { message: 'Password reset successfully'}
+PATCH    | /users/profile    | YES   | user | Update own profile       | `fullName`, `email`, `dni` , `phone`                                        | { message: 'User created successfully', data: [`user`]}
+PATCH    | /users/:userId    | YES   | admin| Update one user          | `params: fullName`, `email`, `password`, `dni` , `phone`                    | { message: 'User updated successfully', data: [`user`]}
+DELETE | /users/:userId    | YES   | admin| Delete one user          | `params: userId`                                                            | { message: 'User deleted successfully', data: [`user`]}
+DELETE | /users/profile    | YES   | user | Delete own profile       | `params: userId`                                                            | { message: 'User deleted successfully', data: [`user`]}
 
 ### Suscription Endpoints
 
 METHOD | ENDPOINT                | TOKEN | ROLE | DESCRIPTION                     | POST PARAMS                                     | RETURNS
 -------|-------------------------|-------|------|---------------------------------|-------------------------------------------------|--------------------
-GET    | /suscription            | NO    | user | Get all suscriptions            |                                                    | { message: 'List of suscriptions', data: [`suscription`]}
-POST   | /suscription/:userId    | YES   | user | Choose one Suscription          |   `params: userId, type`                         | { message: 'Suscription choosed successfully', data: [`suscription`]}
-PATCH    | /suscription/:userId    | YES   | user | Change own suscription          |   `params: userId, type`                            | { message: 'Suscription changed successfully', data: `suscription`}
-DELETE | /suscription/:userId    | YES   | user | Delete own suscription          |   `params: userId`                               | { message: 'Suscription deleted successfully', data: `suscription`}
+GET    | /suscriptions            | NO    | user | Get all suscriptions            |                                                    | { message: 'List of suscriptions', data: [`suscription`]}
+POST   | /suscriptions/:userId    | YES   | user | Choose one Suscription          |   `params: userId, type`                         | { message: 'Suscription choosed successfully', data: [`suscription`]}
+PATCH    | /suscriptions/:userId    | YES   | user | Change own suscription          |   `params: userId, type`                            | { message: 'Suscription changed successfully', data: `suscription`}
+DELETE | /suscriptions/:userId    | YES   | user | Delete own suscription          |   `params: userId`                               | { message: 'Suscription deleted successfully', data: `suscription`}
 
 
 ### Class Endpoints
@@ -68,12 +68,12 @@ DELETE | /rooms/:roomId        | YES   | admin | delete a room                  
 
 METHOD | ENDPOINT                | TOKEN | ROLE | DESCRIPTION              | POST PARAMS                                     | RETURNS
 -------|-------------------------|-------|------|--------------------------|-------------------------------------------------|--------------------
-GET    | /material                    | YES   | admin | Get all material                |                                  | { message: 'List of materials availables', data: [`material`]}
-GET    | /material/:roomId          | YES   | admin | Get all material from a room      |   `params: roomId`     | { message: 'List of materials available in a room', data: [`material`]}
-GET    | /material/:name          | YES   | admin | Get all material of the same type   |   `params: materialName`     | { message: 'Material of the same type available in all rooms', data: [`material`]}
-POST   | /material/:roomId         | YES   | admin | Add material to a room             |   `params: roomId`      | { message: 'Material added successfully', data: [`material`]}
-PATCH    | /material/:materialId    | YES   | admin| Update material                      | `params: materialName`, `description`, `roomId`      | { message: 'Material updated successfully', data: [`material`]}
-DELETE | /material/:materialId        | YES   | admin | delete a material               |   `params: materialId`      | { message: 'Material deleted successfully', data: [`material`]}
+GET    | /materials                    | YES   | admin | Get all material                |                                  | { message: 'List of materials availables', data: [`material`]}
+GET    | /materials/:roomId          | YES   | admin | Get all material from a room      |   `params: roomId`     | { message: 'List of materials available in a room', data: [`material`]}
+GET    | /materials/:name          | YES   | admin | Get all material of the same type   |   `params: materialName`     | { message: 'Material of the same type available in all rooms', data: [`material`]}
+POST   | /materials/:roomId         | YES   | admin | Add material to a room             |   `params: roomId`      | { message: 'Material added successfully', data: [`material`]}
+PATCH    | /materials/:materialId    | YES   | admin| Update material                      | `params: materialName`, `description`, `roomId`      | { message: 'Material updated successfully', data: [`material`]}
+DELETE | /materials/:materialId        | YES   | admin | delete a material               |   `params: materialId`      | { message: 'Material deleted successfully', data: [`material`]}
 
 
 
