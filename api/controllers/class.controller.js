@@ -49,7 +49,13 @@ const userClasses = async (req,res) => {
 }
 
 const bookClass = async (req, res) => {
+
     try {
+        const user = res.locals.id
+        const classToBook = await Class.findByPk(req.body.classId)
+        const bookedClass = await user.setClasses(classToBook)
+
+    return res.status(200).json({ message: `has reservado esta clase`, bookedClass})
 
 } catch (error) {
     console.log(error)
