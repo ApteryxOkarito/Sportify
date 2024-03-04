@@ -33,9 +33,18 @@ const getMaterialFromRoom = async (req, res) => {
 }
 
 
-const getMaterialByName = async (req, res) => {
+const getMaterialByName = async (req, res, name) => {
     try {
-       
+        if(name) {
+            const materials = await Material.findAll({
+                where: {
+                    name: name
+                }
+            })
+        }else{
+            return res.status(404).json({message: "Material doesn't exist"})
+        }
+        return res.status(200).json({ message: "Here you have all the materials", materials })
     } catch (error) {
         console.log(error)
     }
