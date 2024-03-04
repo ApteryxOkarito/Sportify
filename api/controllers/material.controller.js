@@ -64,7 +64,7 @@ const createMaterial = async (req,res) => {
     const newMaterial = await Material.create({
             name :  req.body.name, 
             description: req.body.description,
-            roomId: req.body.roomId
+            roomId: req.params.roomId
         })
         
     return res.status(200).json({message: `You have added a ${newMaterial.name} to the ${room.name} room`})
