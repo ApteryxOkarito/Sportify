@@ -5,9 +5,6 @@ const jwt = require('jsonwebtoken')
 const signup = async (req, res) => {
   try {
 
-    //falta un if comprobando que en el header está el token, en caso contrario, debe saltar error.
-    //No es necesario, a Ira se le fue la olla. Si nos estamos reistrando no necesitamos token  previo (vio)
-
     const salt = bcrypt.genSaltSync(parseInt(process.env.BCRYPT_ROUNDS))
     req.body.password = bcrypt.hashSync(req.body.password, salt)
 
