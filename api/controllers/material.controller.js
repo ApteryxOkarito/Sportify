@@ -26,7 +26,7 @@ const getMaterialFromRoom = async (req, res) => {
             }
         })
 
-    return res.status(200).json({ message: `Here you have all the materials from the ${roomId.name} room`, materials })
+    return res.status(200).json({ message: `Here you have all the materials from the ${room.name} room`, materials })
     } catch (error) {
         console.log(error)
     }

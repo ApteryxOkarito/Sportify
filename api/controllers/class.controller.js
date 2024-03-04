@@ -41,6 +41,16 @@ const bookClass = async (req, res) => {
 
 const createClass = async (req,res) => {
     try {
+        const newClass = await Class.create({
+            start: req.body.start,
+            finish: req.body.finish,
+            duration: req.body.duration,
+            days: req.body.days,
+            sportId: req.body.sportId            
+
+        })
+        return res.status(200).json({message: "Here it is your new Class" , newClass})
+
 
     } catch (error) {
         console.log(error)
@@ -51,19 +61,42 @@ const createClass = async (req,res) => {
 const updateClass = async (req,res) => {
     try {
 
-    } catch (error) {
-        console.log(error)
-    }
-}
+        const updatedRows = await Class.update(req.body,{
+            where:{
+                id: req.params.classId
+            }
+        })
+
+        if(updatedRows > 0) {
+            const updatedClass = await Class.findByPk(req.params.classId)
+            return res.status(200).json(updatedClass)
+          } else {
+            return res.status(404).send('Class not found')
+          }
+        } catch (error) {
+          res.status(500).send(error.message)
+        }
+      }
 
 
 const deleteClass = async (req,res) => {
     try {
-
+        const classe = await Class.destroy({
+            where: {
+                id: req.params.classId
+            }
+        })
+        if (classe > 0){
+            return res.status(200).json('Sport deleted')
+		} else {
+			return res.status(404).send('Sport not found')
+        }
     } catch (error) {
         console.log(error)
     }
 }
+
+
 
 const cancelClass = async (req,res) => {
     try {
