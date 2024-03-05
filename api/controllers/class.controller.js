@@ -40,29 +40,31 @@ const classBySport = async (req,res) => {
 }
 
 
-const userClasses = async (req,res) => {
-    try {
-
-
-    } catch (error) {
-        console.log(error)
-    }
-}
-
-
 const bookClass = async (req, res) => {
 
     try {
-        const user =  res.locals.user
+        const user = res.locals.user
         const classToBook = await Class.findByPk(req.body.classId)
         const bookedClass = await user.addUserClass(classToBook) 
 
-    return res.status(200).json({ message: `has reservado esta clase`, bookedClass})
+    return res.status(200).json({ message: `You have book a class`, bookedClass})
 
 } catch (error) {
     console.log(error)
 }
 }
+
+const userBookedClasses = async (req,res) => {
+    try {
+        const user = res.locals.user
+        const classes = await user.getUserClass()
+        console.log(classes)
+        return res.status(200).json({ message: `Here you have your booked classes`, user, classes})
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 
 const createClass = async (req,res) => {
     try {
@@ -134,7 +136,7 @@ const cancelClass = async (req,res) => {
 module.exports ={
     getAllClasses,
     classBySport, 
-    userClasses, 
+    userBookedClasses, 
     bookClass, 
     createClass,
     updateClass, 

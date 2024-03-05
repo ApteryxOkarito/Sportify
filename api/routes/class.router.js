@@ -3,7 +3,7 @@ const {checkAuth, checkAdmin} = require('../middleware/index')
 const {
     getAllClasses,
     classBySport, 
-    userClasses, 
+    userBookedClasses, 
     bookClass,
     createClass, 
     updateClass, 
@@ -15,7 +15,7 @@ const {
 router
 .get('/', getAllClasses)
 .get('/:sportId', classBySport)
-.get('/:userId', checkAuth, userClasses)
+.get('/bokedClass/:userId', checkAuth, userBookedClasses)
 .post('/bookClass', checkAuth, bookClass)
 .post('/', checkAuth, checkAdmin, createClass)
 .patch('/:classId', checkAuth, checkAdmin, updateClass)
