@@ -15,7 +15,7 @@ const {
 router
 .get('/', getAllClasses)
 .get('/:sportId', classBySport)
-.get('/bokedClass/:userId', checkAuth, userBookedClasses)
+.get('/bookedClass/:userId', checkAuth, userBookedClasses)
 .post('/bookClass', checkAuth, bookClass)
 .post('/', checkAuth, checkAdmin, createClass)
 .patch('/:classId', checkAuth, checkAdmin, updateClass)

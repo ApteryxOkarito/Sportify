@@ -44,26 +44,52 @@ const bookClass = async (req, res) => {
 
     try {
         const user = res.locals.user
-        const classToBook = await Class.findByPk(req.body.classId)
+        const classToBook = await Class.findByPk(req.body.classId)//esto devuelve un objeto
+        const toBookStart = timeToMinutes (classToBook.start)
+        const toBookFinish = timeToMinutes (classToBook.finish)
+
+
+        const userClasses = await user.getUserClass() //esto devuelve un array de objetos 
+
+        userClasses.forEach(clase => { 
+            const classStart = timeToMinutes (clase.start)
+            const classFinish = timeToMinutes (clase.finish)
+            if(clase.days === classToBook.days){
+                console.log(toBookStart > classStart, toBookStart, classStart)
+                if (toBookStart > classStart && toBookStart < classFinish){
+                    throw new Error ("La clase que quieres reservar coincide con otra reservada")
+                } 
+                console.log(toBookFinish > classStart && toBookFinish < classFinish)
+                if (toBookFinish > classStart && toBookFinish < classFinish){
+                    throw new Error ("La clase que quieres reservar coincide con otra reservada")
+                }
+            }
+            
+        });
         const bookedClass = await user.addUserClass(classToBook) 
-
-    return res.status(200).json({ message: `You have book a class`, bookedClass})
-
+        return res.status(200).json({message: "todo ok", bookedClass})
 } catch (error) {
     console.log(error)
+    return res.status(500).json({message: "La clase que quieres reservar coincide con otra reservada"})
 }
 }
+
+
+function timeToMinutes(time) {
+    let [hours, minutes] = time.split(':').map(t => parseInt(t));
+    return hours * 60 + minutes;
+}
+
 
 const userBookedClasses = async (req,res) => {
     try {
         const user = res.locals.user
         const classes = await user.getUserClass()
-        console.log(classes)
-        return res.status(200).json({ message: `Here you have your booked classes`, user, classes})
+        return res.status(200).json({ message: `Here you have your booked classes`, classes})
     } catch (error) {
         console.log(error)
     }
-}
+} //devuelve la tabla intermedia por qué? 
 
 
 const createClass = async (req,res) => {
@@ -116,7 +142,7 @@ const deleteClass = async (req,res) => {
         if (classe > 0){
             return res.status(200).json('Class deleted')
 		} else {
-			return res.status(404).send('S not found')
+			return res.status(404).send('Class not found')
         }
     } catch (error) {
         console.log(error)
@@ -127,11 +153,18 @@ const deleteClass = async (req,res) => {
 
 const cancelClass = async (req,res) => {
     try {
+        const user = res.locals.user
+        const classToCancel = await Class.findByPk(req.body.classId)
+        const cancelledClass = await user.removeUserClass(classToCancel)
+
+        return res.status(200).json({ message: `You have cancel your class`, cancelledClass})
 
     } catch (error) {
         console.log(error)
+    return res.status(500).json({message: "La clase que quieres reservar coincide con otra reservada"})
     }
-}
+} //probar en postman 
+
 
 module.exports ={
     getAllClasses,
