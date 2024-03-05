@@ -38,7 +38,7 @@ function addRelations(){
             onDelete: 'SET NULL'
         })
         // MANY TO MANY - User & Class
-        User.belongsToMany(Class, {through: 'userClasses', as: 'userClass'})
+        User.belongsToMany(Class, {through: 'userClasses', as: 'userClass'}) //los métodos se han generado con este nombre
         Class.belongsToMany(User, {through: 'userClasses', as: 'userClass'})
 
     } catch (error) {

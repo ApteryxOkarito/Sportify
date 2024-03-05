@@ -1,5 +1,6 @@
 const Class = require('../models/class.model.js')
 const Sport = require('../models/sport.model.js')
+const User = require('../models/user.model.js')
 
 
 
@@ -48,12 +49,13 @@ const userClasses = async (req,res) => {
     }
 }
 
+
 const bookClass = async (req, res) => {
 
     try {
-        const user = res.locals.id
+        const user =  res.locals.user
         const classToBook = await Class.findByPk(req.body.classId)
-        const bookedClass = await user.setClasses(classToBook)
+        const bookedClass = await user.addUserClass(classToBook) 
 
     return res.status(200).json({ message: `has reservado esta clase`, bookedClass})
 
