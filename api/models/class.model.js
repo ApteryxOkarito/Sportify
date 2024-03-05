@@ -12,7 +12,7 @@ const Class = sequelize.define('class', {
         allowNull: false
     },
     duration: {
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
         allowNull: false
 
     },
