@@ -49,12 +49,10 @@ const bookClass = async (req, res) => {
 
     try {
         const user = res.locals.user
-        const classToBook = await Class.findByPk(req.body.classId)//esto devuelve un objeto
+        const classToBook = await Class.findByPk(req.body.classId)
         const toBookStart = timeToMinutes (classToBook.start)
         const toBookFinish = timeToMinutes (classToBook.finish)
-
-
-        const userClasses = await user.getUserClass() //esto devuelve un array de objetos 
+        const userClasses = await user.getUserClass() 
 
         userClasses.forEach(clase => { 
             const classStart = timeToMinutes (clase.start)
@@ -82,7 +80,6 @@ const bookClass = async (req, res) => {
 
 
 
-
 const userBookedClasses = async (req,res) => {
     try {
         const user = res.locals.user
@@ -92,7 +89,7 @@ const userBookedClasses = async (req,res) => {
         console.log(error)
     return res.status(500).json({message: "Something went wrong"})
     }
-} //devuelve la tabla intermedia por qué? 
+}
 
 
 const createClass = async (req,res) => {
@@ -162,7 +159,7 @@ const cancelClass = async (req,res) => {
         const classToCancel = await Class.findByPk(req.body.classId)
         const cancelledClass = await user.removeUserClass(classToCancel)
 
-        return res.status(200).json({ message: `You have cancel your class`, cancelledClass})
+        return res.status(200).json({ message: `You have cancel your class`})
 
     } catch (error) {
         console.log(error)
