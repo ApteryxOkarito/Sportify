@@ -11,6 +11,7 @@ const getAllUsers = async (req, res) => {
         return res.status(200).json(users)
     } catch (error) {
         console.log(error)
+    return res.status(500).json({message: "Something went wrong"})
     }
 }
 
@@ -30,6 +31,7 @@ const getOwnUser = async (req,res) => {
 
     } catch (error) {
         console.log(error)
+      return res.status(500).json({message: "Something went wrong"})
     }
 }
 
@@ -44,8 +46,9 @@ const getOneUser = async (req,res) => {
             return res.status(404).send('User not found')
         }
 
-    } catch (error) {
+ } catch (error) {
         console.log(error)
+        return res.status(500).json({message: "Something went wrong"})
     }
 }
 
@@ -67,6 +70,7 @@ const createUser = async (req, res) => {
 
 } catch (error) {
     console.log(error)
+    return res.status(500).json({message: "Something went wrong"})
 }
 }
 
@@ -81,7 +85,7 @@ const resetPassword = async (req,res) => {
 
 
 const updateOwnProfile = async (req,res) => {
-        try {
+    try {
 
             const user = await User.update(req.body, {
                 where:{
@@ -93,8 +97,9 @@ const updateOwnProfile = async (req,res) => {
             }
             return res.status(200).json({message: 'User updated'})
     
-        } catch (error) {
-            console.log(error)
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({message: "Something went wrong"})
         }
     }
 
@@ -113,6 +118,7 @@ const updateUser = async (req,res) => {
 
     } catch (error) {
         console.log(error)
+        return res.status(500).json({message: "Something went wrong"})
     }
 }
 
@@ -133,6 +139,7 @@ const deleteUser = async (req,res) => {
         }
     } catch (error) {
         console.log(error)
+        return res.status(500).json({message: "Something went wrong"})
     }
 }
 
@@ -152,6 +159,7 @@ const deleteOwnProfile = async (req,res) => {
         }
     } catch (error) {
         console.log(error)
+        return res.status(500).json({message: "Something went wrong"})
     }
 }
 

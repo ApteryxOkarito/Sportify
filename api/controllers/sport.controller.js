@@ -6,6 +6,7 @@ const getAllSports = async (req, res) => {
         return res.status(200).json(sports)
     } catch (error) {
         console.log(error)
+      return res.status(500).json({message: "Something went wrong"})
     }
 }
 
@@ -21,13 +22,13 @@ const createSport = async (req,res) => {
 
     } catch (error) {
         console.log(error)
+      return res.status(500).json({message: "Something went wrong"})
     }
 }
 
 
 const updateSport = async (req,res) => {
     try {
-
         const updatedRows = await Sport.update(req.body,{
             where:{
                 id: req.params.sportId
@@ -40,10 +41,11 @@ const updateSport = async (req,res) => {
           } else {
             return res.status(404).send('Sport not found')
           }
-        } catch (error) {
-          res.status(500).send(error.message)
-        }
-      }
+    } catch (error) {
+        res.status(500).send(error.message)
+        return res.status(500).json({message: "Something went wrong"})
+    }
+ }
 
 
 const deleteSport = async (req,res) => {
@@ -60,6 +62,7 @@ const deleteSport = async (req,res) => {
         }
     } catch (error) {
         console.log(error)
+      return res.status(500).json({message: "Something went wrong"})
     }
 }
 

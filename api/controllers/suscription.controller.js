@@ -8,6 +8,7 @@ const getAllSuscriptions = async (req, res) => {
         return res.status(200).json(suscription)
     } catch (error) {
         console.log(error)
+     return res.status(500).json({message: "Something went wrong"})
     }
 }
 
@@ -23,11 +24,12 @@ const chooseSuscription = async (req, res) => {
         
         } 
         else {
-            res.status(400).json({ message: 'something go wrong' })
+            res.status(400).json({ message: 'Something went wrong' })
         }
 
     } catch (error) {
         console.log(error)
+    return res.status(500).json({message: "Something went wrong"})
     }
 }
 
@@ -48,11 +50,13 @@ const changeSuscription = async (req, res) => {
         
         } 
         else {
-            res.status(400).json({ message: 'something go wrong' })
+            res.status(400).json({ message: 'Something went wrong' })
         }
 
     } catch (error) {
         console.log(error)
+    return res.status(500).json({message: "Something went wrong"})
+        
     }
 }
 
@@ -69,6 +73,7 @@ const deleteSuscription = async (req, res) => {
 
     } catch (error) {
         console.log(error)
+    return res.status(500).json({message: "Something went wrong"})
     }
 }
 

@@ -7,6 +7,7 @@ const getAllMaterials = async (req, res) => {
         return res.status(200).json({ message: "Here you have all the materials", materials })
     } catch (error) {
         console.log(error)
+    return res.status(500).json({message: "Something went wrong"})
     }
 }
 
@@ -29,6 +30,7 @@ const getMaterialFromRoom = async (req, res) => {
     return res.status(200).json({ message: `Here you have all the materials from the ${room.name} room`, materials })
     } catch (error) {
         console.log(error)
+    return res.status(500).json({message: "Something went wrong"})
     }
 }
 
@@ -50,6 +52,7 @@ const getMaterialByName = async (req, res) => {
         }
     } catch (error) {
         console.log(error)
+    return res.status(500).json({message: "Something went wrong"})
     }
 }
 
@@ -74,6 +77,7 @@ const createMaterial = async (req,res) => {
 
     } catch (error) {
         console.log(error)
+    return res.status(500).json({message: "Something went wrong"})
     }
 }
 
@@ -94,7 +98,8 @@ const updateMaterial = async (req,res) => {
             return res.status(404).send('Material not found')
           }
         } catch (error) {
-          res.status(500).send(error.message)
+            console.log(error)
+        return res.status(500).json({message: "Something went wrong"})
         }
       }
 
@@ -112,6 +117,7 @@ const deleteMaterial = async (req,res) => {
         }
     } catch (error) {
         console.log(error)
+    return res.status(500).json({message: "Something went wrong"})
     }
 }
 

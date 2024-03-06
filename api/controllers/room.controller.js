@@ -7,6 +7,7 @@ const getAllRooms = async (req, res) => {
         return res.status(200).json(rooms)
     } catch (error) {
         console.log(error)
+    return res.status(500).json({message: "Something went wrong"})
     }
 }
 
@@ -23,6 +24,7 @@ const getOneRoom = async (req,res) => {
 
     } catch (error) {
         console.log(error)
+    return res.status(500).json({message: "Something went wrong"})
     }
 }
 
@@ -49,7 +51,7 @@ const createRoom = async (req, res) => {
         return res.status(200).json({ message: "Here is your new Room", newRoom });
     } catch (error) {
         console.log(error);
-        return res.status(500).json({ message: "Internal Server Error" });
+      return res.status(500).json({ message: "Something went wrong" });
     }
 };
 
@@ -73,9 +75,10 @@ const updateRoom = async (req,res) => {
           } else {
             return res.status(404).send('Room not found')
           }
-        } catch (error) {
-          res.status(500).send(error.message)
-        }
+    } catch (error) {
+            console.log(error)
+      return res.status(500).json({message: "Something went wrong"})
+    }
       }
 
 
@@ -95,6 +98,7 @@ const deleteRoom = async (req,res) => {
         }
     } catch (error) {
         console.log(error)
+      return res.status(500).json({message: "Something went wrong"})
     }
 }
 
