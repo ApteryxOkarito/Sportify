@@ -58,26 +58,23 @@ const bookClass = async (req, res) => {
             const classStart = timeToMinutes (clase.start)
             const classFinish = timeToMinutes (clase.finish)
             if(clase.days === classToBook.days){
-                console.log(toBookStart > classStart, toBookStart, classStart)
+
                 if (toBookStart > classStart && toBookStart < classFinish){
                     throw new Error ("The class you want to book overlaps with another booking.")
                 } 
-                console.log(toBookFinish > classStart && toBookFinish < classFinish)
                 if (toBookFinish > classStart && toBookFinish < classFinish){
                     throw new Error ("The class you want to book overlaps with another booking.")
                 }
             }
-            
         });
+
         const bookedClass = await user.addUserClass(classToBook) 
-        return res.status(200).json({message: "todo ok", bookedClass})
+        return res.status(200).json({message: "You have booked your class", bookedClass})
+        
 } catch (error) {
     console.log(error)
-    return res.status(500).json({message: "Something went wrong"})
-}
-}
-
-
+    return res.status(500).json({message: `Something went wrong: ${error}`})
+}}
 
 
 const userBookedClasses = async (req,res) => {
