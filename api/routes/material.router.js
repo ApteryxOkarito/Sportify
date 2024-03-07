@@ -14,7 +14,7 @@ const {
 
 router
     .get('/', checkAuth, checkAdmin, getAllMaterials)
-    .get('/:name', checkAuth, checkAdmin, getMaterialByName)
+    .get('/name', checkAuth, checkAdmin, getMaterialByName)
     .get('/room/:roomId', checkAuth, checkAdmin, getMaterialFromRoom)
     .post('/:roomId',checkAuth, checkAdmin, createMaterial)
     .patch('/:materialId',checkAuth, checkAdmin, updateMaterial)
