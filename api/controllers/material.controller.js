@@ -1,5 +1,7 @@
 const Material = require('../models/material.model.js')
 const Room = require('../models/room.model.js')
+const { Op } = require('sequelize')
+
 
 const getAllMaterials = async (req, res) => {
     try {
@@ -36,23 +38,31 @@ const getMaterialFromRoom = async (req, res) => {
 
 
 const getMaterialByName = async (req, res) => {
+    const queryParams = req.query;
+    const whereClause = {};
+    const validQueryParams = ['name']
+
     try {
-        const materialName = req.params.name;
 
-        if(materialName) {
-            const materials = await Material.findAll({
-                where: {
-                    name: materialName
-                }
+        for (const key in queryParams) {
+            if (!validQueryParams.includes(key)) {
+                return res.status(404).json({ message: 'Invalid term to search material' })
+            }
+            whereClause[key] = { [Op.like]: `%${queryParams[key]}%` }
+        };
+
+        const materials = await Material.findAll(
+            {
+                where: whereClause
             })
-            return res.status(200).json({ message: "Here you have all the materials", materials })
 
-        }else{
-            return res.status(404).json({message: "Material doesn't exist"})
+        if (materials.length === 0) {
+            return res.status(200).json({ message: 'There is no material with that name' })
+        } else {
+            return res.status(200).json(materials)
         }
     } catch (error) {
-        console.log(error)
-    return res.status(500).json({message: "Something went wrong"})
+        res.status(500).send(error.message)
     }
 }
 
